@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import stealmybike.flipdot.org.stealmybike.events.EventHandler;
 import stealmybike.flipdot.org.stealmybike.model.Event;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
                 (TextView)findViewById(R.id.eventLog)
         );
 
-        AppInject.init(mainActivtyUiElements);
+        AppInject.init(
+                this.getApplicationContext(),
+                mainActivtyUiElements
+        );
     }
 
     @Override
@@ -31,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        EventRenderer renderer = AppInject.get(EventRenderer.class);
-        renderer.render(new Event("foo", "bar"));
+        EventHandler handler = AppInject.get(EventHandler.class);
+        handler.handle(new Event("foo", "bar"));
 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -45,6 +49,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
     }
 }

@@ -1,8 +1,9 @@
-package stealmybike.flipdot.org.stealmybike;
+package stealmybike.flipdot.org.stealmybike.events;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import stealmybike.flipdot.org.stealmybike.MainActivtyUiElements;
 import stealmybike.flipdot.org.stealmybike.model.Event;
 
 /**
