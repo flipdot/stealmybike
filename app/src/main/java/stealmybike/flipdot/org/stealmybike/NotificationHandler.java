@@ -3,6 +3,7 @@ package stealmybike.flipdot.org.stealmybike;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import com.google.inject.Inject;
 
@@ -29,5 +30,9 @@ public class NotificationHandler {
                 .build();
 
         notificationManager.notify(1, notification);
+
+        MediaPlayer musicPlayer = MediaPlayer.create(context, R.raw.alarm);
+        musicPlayer.setVolume(100f, 100f);
+        musicPlayer.start();
     }
 }
