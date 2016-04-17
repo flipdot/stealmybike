@@ -6,8 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import stealmybike.flipdot.org.stealmybike.events.EventHandler;
-import stealmybike.flipdot.org.stealmybike.model.Event;
+import stealmybike.flipdot.org.stealmybike.bluetooth.ReceiveBluetoothTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
                 this.getApplicationContext(),
                 mainActivtyUiElements
         );
+
+        ReceiveBluetoothTask receiveBluetoothTask = AppInject.get(ReceiveBluetoothTask.class);
+        receiveBluetoothTask.execute("00:80:25:08:54:D4");
     }
 
     @Override
@@ -35,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        EventHandler handler = AppInject.get(EventHandler.class);
-        handler.handle(new Event("foo", "bar"));
 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

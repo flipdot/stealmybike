@@ -20,6 +20,6 @@ public class NotificationHandler {
 
     public void handle(Event event) {
         Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(1000 * 2);
+        //vibrator.vibrate(1000 * 2);
     }
 }

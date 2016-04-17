@@ -35,4 +35,8 @@ public class Event {
                 ", data='" + data + '\'' +
                 '}';
     }
+
+    public static Event parse(String line) {
+        return new Event("msg", line);
+    }
 }
