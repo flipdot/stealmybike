@@ -30,13 +30,23 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
-                "type='" + type + '\'' +
-                ", data='" + data + '\'' +
-                '}';
+        return data;
     }
 
+
+    /*
+    * type and data is seperated by a equal-sign. Possible types:
+    *
+    * - text: display text on screen
+    * - alarm: trigger an alarm
+    * */
     public static Event parse(String line) {
-        return new Event("msg", line);
+        String[] splitted = line.split("=");
+
+        if(splitted.length != 2) {
+            return null;
+        }
+
+        return new Event(splitted[0], splitted[1]);
     }
 }

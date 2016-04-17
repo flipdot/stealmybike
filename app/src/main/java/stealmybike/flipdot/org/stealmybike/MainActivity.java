@@ -6,7 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import stealmybike.flipdot.org.stealmybike.bluetooth.ReceiveBluetoothTask;
+import stealmybike.flipdot.org.stealmybike.checker.NoSignalChecker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +29,13 @@ public class MainActivity extends AppCompatActivity {
                 mainActivtyUiElements
         );
 
+        NoSignalChecker checker = AppInject.get(NoSignalChecker.class);
+
         ReceiveBluetoothTask receiveBluetoothTask = AppInject.get(ReceiveBluetoothTask.class);
         receiveBluetoothTask.execute("00:80:25:08:54:D4");
+
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor.scheduleAtFixedRate(checker, 10, 1, TimeUnit.SECONDS);
     }
 
     @Override

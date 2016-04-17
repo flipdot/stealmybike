@@ -10,7 +10,7 @@ import stealmybike.flipdot.org.stealmybike.model.Event;
  * Created by daniel on 17.04.16.
  */
 @Singleton
-public class EventRenderer {
+public class EventRenderer extends EventHandler {
 
     private MainActivtyUiElements uiElements;
 
@@ -21,7 +21,8 @@ public class EventRenderer {
         this.uiElements = uiElements;
     }
 
-    public void render(Event event) {
+    @Override
+    public void handle(Event event) {
         String text = uiElements.getEventLogElm().getText().toString();
         text = event.toString() + "\n" + text;
         uiElements.getEventLogElm().setText(text);
