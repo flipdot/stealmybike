@@ -1,8 +1,5 @@
 package stealmybike.flipdot.org.stealmybike.checker;
 
-import android.content.Context;
-import android.os.Vibrator;
-
 import com.google.inject.Inject;
 
 import org.joda.time.DateTime;
@@ -34,7 +31,7 @@ public class NoSignalChecker implements Runnable {
 
         DateTime now = DateTime.now();
         Duration duration = new Duration(lastUpdated, now);
-        if(duration.getStandardSeconds() > 1) {
+        if(duration.getStandardSeconds() > 3) {
             alarmHandler.raiseAlarm();
         }
     }
