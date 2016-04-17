@@ -10,13 +10,20 @@ import com.google.inject.Inject;
  */
 public class AlarmHandler {
     private Context context;
+    private NotificationHandler notificationHandler;
 
     @Inject
-    public AlarmHandler(Context context) {
+    public AlarmHandler(
+            Context context,
+            NotificationHandler  notificationHandler
+    ) {
         this.context = context;
+        this.notificationHandler = notificationHandler;
     }
 
     public void raiseAlarm() {
+        notificationHandler.showNotify();
+
         Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(1000 * 2);
     }
